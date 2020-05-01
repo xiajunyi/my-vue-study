@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改变绑定的class名称或者class名称对应的值为true或false</title>
+    <script src="./vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="show" data-test1="v-if">{{message}}</div>
+        <div v-show="show" data-test2="v-show">{{message}}</div>
+        <div v-if="show==='aaa'" >111<input key="111"/></div>
+        <div v-else-if="show==='bbb'" >222<input key="222"/></div>
+        <div v-else >333<input key="333"/></div>
+
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                show: false,
+                message: "hello world"
+            },
+           methods: {
+               handleDivClick1: function() {
+                    this.activated1 = !this.activated1;
+               },
+               handleDivClick2: function() {
+                    this.activated2 = this.activated2 === 'activated' ? "" : "activated";
+               },
+           }
+        })
+    </script>
+</body>
+</html>

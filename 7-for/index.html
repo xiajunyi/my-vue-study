@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list和对象中直接赋值不能引起循环的显示改变，可以用set方法，push、pop、shift、unshift、revert等特殊函数或整个对象重新赋值</title>
+    <script src="./vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(item, index) of list" 
+             :key = "item.id"
+        >
+            {{item}}------{{index}}--------{{item.id}}
+        </div>
+        <div v-for="(item, index) of userInfo" 
+        >
+            {{item}}------{{index}}
+        </div>
+        
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                list: [
+                    {id: 111, name: 'aaa'},
+                    {id: 222, name: 'bbb'},
+                    {id: 333, name: 'ccc'}
+                ],
+                userInfo: {
+                    name: 'xiajunyi',
+                    age: 28,
+                    address: 'shanghai'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

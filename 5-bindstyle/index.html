@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改变绑定的class名称或者class名称对应的值为true或false</title>
+    <script src="./vue.min.js"></script>
+    <style>
+        .activated {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div @click="handleDivClick1"
+             :class="{activated: activated1}"
+        >
+            hello world1
+        </div>
+        <div @click="handleDivClick2"
+             :class="[activated2]"
+        >
+            hello world2
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                activated1: false,
+                activated2: ""
+            },
+           methods: {
+               handleDivClick1: function() {
+                    this.activated1 = !this.activated1;
+               },
+               handleDivClick2: function() {
+                    this.activated2 = this.activated2 === 'activated' ? "" : "activated";
+               },
+           }
+        })
+    </script>
+</body>
+</html>

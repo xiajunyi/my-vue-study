@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>counter</title>
+    <script src="./vue.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <counter ref="one" @change="handleCount"></counter>
+        <counter ref="two" @change="handleCount"></counter>
+        <br/><br/>
+        <div>总点击次数: {{countNumber}}</div>
+    </div>
+    <script>
+        Vue.component('counter',{
+            template: '<li @click="handleLiClick" >我被点击的次数：{{number}}</li>',
+            data: function(){
+                return {
+                    number: 0
+                }
+            },
+            methods: {
+                handleLiClick: function() {
+                    this.number ++;
+                    this.$emit('change');
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                countNumber: 0
+            },
+            methods: {
+                handleCount: function() {
+                    this.countNumber = this.$refs.one.number + this.$refs.two.number;
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
